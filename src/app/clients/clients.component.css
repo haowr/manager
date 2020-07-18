@@ -1,0 +1,25 @@
+.deletecolor{
+
+    color:red;
+    opacity:.6;
+
+}.contractorselected{
+
+    background-color:rgb(224, 224, 224);
+    color:grey;
+
+
+}
+.contractordeselected{
+
+    background-color: white;
+    color:white;
+
+}
+
+.deletecolor{
+
+    color:red;
+    opacity:.6;
+
+}

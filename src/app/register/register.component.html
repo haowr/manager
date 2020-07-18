@@ -1,0 +1,139 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-lg-3">
+
+
+        </div>
+        <div class="col-lg-6 text-center">
+            <h2 class="animated fadeIn">
+                <i class="material-icons">
+                    mode_edit
+                </i>
+                Register
+            </h2>
+            <div class = "row">
+
+                <div class = "col-lg-12" style="border:1px solid grey;">
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+
+
+        </div>
+    </div>
+    <div *ngIf="registrationFormOpen " class="row">
+
+
+        <div class="col-lg-12">
+
+            <div class="row">
+                <div class="col-lg-2">
+
+                </div>
+                <div class="col-lg-8 ">
+                    <br>
+                    <br>
+                    <form (submit)="onRegisterSubmit()" class="animated fadeIn">
+
+                        <div class="form-group">
+                            <label>Employee Name</label>
+                            <input *ngIf="!nameCannotBeEmpty"type="text" [(ngModel)]="name" name="name" class="form-control">
+                            <input *ngIf="nameCannotBeEmpty" type="text" [(ngModel)]="name" placeholder="EMPLOYEE NAME CANNOT BE EMPTY..." name="name" class="form-control">
+
+                            <!--<div *ngIf="userNameCannotBeEmpty" class="well well-sm">
+                                {{nameCannotBeEmptyMsg}}
+                            </div>-->
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input *ngIf= "!emailCannotBeEmpty" type="email" [(ngModel)]="email" name="email" class="form-control">
+                            <input *ngIf ="emailCannotBeEmpty" type="email" [(ngModel)]="email" placeholder="EMAIL CANNOT BE EMPTY..." name="email" class="form-control">
+                            <!--<div *ngIf="emailCannotBeEmpty" class="well well-sm">
+                                {{emailCannotBeEmptyMsg}}
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input *ngIf = "!phoneNumberCannotBeEmpty"type="string" [(ngModel)]="phonenumber" name="phonenumber" class="form-control">
+                            <input *ngIf = "phoneNumberCannotBeEmpty" type="text" [(ngModel)]="phonenumber" placeholder=" PHONENUMBER CANNOT BE EMPTY..." name="phonenumber" class="form-control">
+                            <!--<div *ngIf="phoneNumberCannotBeEmpty" class="well well-sm">
+                                {{phonenumberCannotBeEmptyMsg}}
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input *ngIf ="!userNameCannotBeEmpty" type="text" [(ngModel)]="username" name="username" class="form-control">
+                            <input *ngIf ="userNameCannotBeEmpty" type="text" [(ngModel)]="username" placeholder=" USERNAME CANNOT BE EMPTY" name="username" class="form-control">
+                            <!--<div *ngIf="userNameCannotBeEmpty" class="well well-sm">
+                                {{usernameCannotBeEmptyMsg}}
+                            </div>-->
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input *ngIf="!passwordCannotBeEmpty" type="password" [(ngModel)]="password" name="password" class="form-control">
+                            <input *ngIf ="passwordCannotBeEmpty" type="password" [(ngModel)]="password" placeholder=" PASSWORD FIELD CANNOT BE EMPTY..." name="password" class="form-control">
+
+                           <!-- <div *ngIf="passwordCannotBeEmpty" class="well well-sm">
+                                {{passwordCannotBeEmptyMsg}}
+                            </div>-->
+                        </div>
+                        <input type="submit" class="btn btn-primary bounce" value="Submit">
+                    </form>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class = "row">
+
+        <div class = "col-lg-2">
+
+        </div>
+        <div class = "col-lg-8 text-center">
+            <br>
+            <br>
+
+            <div *ngIf="loadingRegistration" style="background-color:white;" class="jumbotron text-center">
+                <i style="font-size:35px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                <span class="sr-only">Loading...</span>
+            </div>
+
+            <div *ngIf="registrationSuccess" class="jumbotron text-center pulse animated fadeIn">
+                <h3 style="font-family: 'Lora', serif; "> Login Successful...</h3>
+
+            </div>
+            <div *ngIf="registrationFailed" class="jumbotron text-center animated flash">
+                <!--h3 style="font-family: 'Lora', serif; ">{{registrationFailMsg}}</h3>-->
+                <h4 style="font-family: 'Lora', serif; "> ({{errorMsg}})</h4>
+            </div>
+
+        </div>
+        <div class = "col-lg-2">
+
+        </div>
+
+    </div>
+</div>

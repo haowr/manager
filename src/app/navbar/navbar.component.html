@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a id="moveitemleft" *ngIf="largeRoseLogo  && !largestRoseLogo && !smallestRoseLogo" [routerLink]="['/']"><img style="position:fixed; z-index:1000000;"*ngIf="largeRoseLogo && !largestRoseLogo && !smallestRoseLogo"  src="../assets/img/roselogosmallerhalf.png"></a>
+        <a [routerLink]="['/']">            <img style="position:fixed;" class = "img-responsive"src ="../assets/shorty.svg" style="height:80px;width:80px;">
+        </a>
+
+        <a style="color:white; text-decoration:none;"id="moveitemleft" *ngIf="largestRoseLogo " [routerLink]="['/']"><img style="position:fixed; z-index:1000000;"*ngIf="largestRoseLogo " src="../assets/img/roselogosmaller.png"><br><br><br><br><br><p style=" color:white;font-size:20px;font-family: 'Lora', sans-serif; padding-left:21px;">      | Rose</p></a>
+        <button type="button"  id="navbar-toggle" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+
+      <div class="collapse navbar-collapse movemenuright" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav">
+
+        </ul>
+
+
+        <ul class="nav navbar-nav navbar-right">
+
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>

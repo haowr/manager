@@ -1,0 +1,522 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+    <div class = "row animated fadeIn">
+
+
+            <div class = "row">
+                <div class ="col-lg-12">
+
+                    <div class = "row">
+
+                        <div class = "col-lg-3 text-right">
+
+                            <a href="#" style="color:black;" (click)="openClientHomeHome()" onclick="return false">
+
+                                <h1  style="font-size:25px; font-family:'junar'; ">
+                                    HOME
+                                    <i class="material-icons" style="font-size:45px; ">
+                                        home
+                                    </i>
+
+                                </h1>
+                            </a>
+
+                        </div>
+
+                        <div class = "col-lg-3 text-right">
+
+                            <a href="#" style="color:black;"(click)="openClientLocations()" onclick="return false">
+
+                                <h1  style="font-size:25px; font-family:'junar'; ">
+                                    LOCATIONS
+                                    <i class="material-icons" style="font-size:45px; ">
+                                        gps_fixed
+                                    </i>
+
+                                </h1>
+                            </a>
+
+                        </div>
+
+                        <div class = "col-lg-3 text-right">
+
+                            <a href="#" style="color:rgb(65, 65, 65); opacity:.4;" onclick="return false">
+
+                                <h1  style="font-size:25px; font-family:'junar'; ">
+                                    CONTRACTORS
+                                    <i class="material-icons" style="font-size:45px; ">
+                                        expand_more
+                                    </i>
+                                </h1>
+                            </a>
+
+                        </div>
+
+
+                        <div class = "col-lg-3 text-right">
+
+                        <a href="#" style="color:black;" onclick="return false">
+                            <h1  style="font-size:25px; font-family:'junar'; ">
+                                CONTRACTOR
+                                <i class="material-icons" style="font-size:45px; ">
+                                    expand_more
+                                </i>
+                            </h1>
+                        </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class = "col-lg-2">
+
+                </div>
+
+                <div *ngIf="clientHomeHomeOpen" >
+
+                    <div class = "col-lg-2  text-right">
+                        <img class="img-responsive" src="../assets/building.svg"/>
+                    </div>
+
+                    <div class = "col-lg-4 text-left">
+                            <br>
+                            <br>
+                            <br>
+                            <h1  style="font-size:35px; font-family:'junar'; text-decoration:underline; ">NAME</h1>
+                            <h1 *ngIf="!loadingClients" class="varta" style="font-size:25px; color:black; opacity:1;">
+                                {{currentClient}}
+                            </h1>
+                            <div *ngIf="loadingClients" class = "col-lg-12">
+
+                                <i style="font-size:28px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span class="sr-only">Loading...</span>
+
+
+                            </div>
+                            <h1  style="font-size:35px; font-family:'junar'; text-decoration:underline; ">ADDRESS</h1>
+                            <h1 *ngIf="!loadingClients" class="varta" style="font-size:25px; color:black; opacity:1;">
+                                {{currentAddress}}
+                            </h1>
+                            <div *ngIf="loadingClients" class = "col-lg-12 text-center">
+
+                                <div class = "row">
+                                        <div class = "col-lg-6 text-center">
+
+                                            <i style="font-size:28px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class = "col-lg-6">
+
+                                        </div>
+
+                                </div>
+
+
+                            </div>
+                            <br>
+                            <i class = "material-icons" style="font-size:40px;">
+                                local_phone
+                                <span *ngIf="!loadingClients" class="varta" style="font-size:27px; ">{{currentPhone}}</span>
+                                <i *ngIf="loadingClients" style="font-size:20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                            </i>
+                            <br>
+                            <i class = "material-icons" style="font-size:40px;">
+                                email
+                                <span *ngIf="!loadingClients" class="varta" style="font-size:27px; ">{{currentEmail}}</span>
+                                <i *ngIf="loadingClients" style="font-size:20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                            </i>
+
+
+                    </div>
+
+                    <div class = "col-lg-4 text-left">
+                            <br>
+                            <br>
+                            <br>
+                            <h1  style="font-size:35px; font-family:'junar'; text-decoration:underline; ">CONTACT</h1>
+                            <h1  *ngIf="!loadingClients"class="varta" style="font-size:25px; color:black; opacity:1;">
+                                {{currentClient}}
+                            </h1>
+                            <div *ngIf="loadingClients" class = "col-lg-12 text-center">
+
+                                <div class = "row">
+                                        <div class = "col-lg-6 text-center">
+
+                                            <i style="font-size:28px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class = "col-lg-6">
+
+                                        </div>
+
+                                </div>
+
+
+                            </div>
+                            <h1  style="font-size:35px; font-family:'junar'; text-decoration:underline; ">ADDRESS</h1>
+                            <h1 *ngIf="!loadingClients" class="varta" style="font-size:25px; color:black; opacity:1;">
+                                {{currentAddress}}
+                            </h1>
+                            <div *ngIf="loadingClients" class = "col-lg-12 text-center">
+
+                                <div class = "row">
+                                        <div class = "col-lg-6 text-center">
+
+                                            <i style="font-size:28px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class = "col-lg-6">
+
+                                        </div>
+
+                                </div>
+
+
+                            </div>
+                            <br>
+                            <i class = "material-icons" style="font-size:40px;">
+                                local_phone
+                                <span *ngIf="!loadingClients"  class="varta" style="font-size:27px; ">{{currentPhone}}</span>
+
+                                <i *ngIf="loadingClients" style="font-size:20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                            </i>
+
+                            <br>
+                            <i class = "material-icons" style="font-size:40px;">
+                                email
+                                <span *ngIf="!loadingClients" class="varta" style="font-size:27px; ">{{currentEmail}}</span>
+                                <i *ngIf="loadingClients" style="font-size:20px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+
+                            </i>
+
+
+
+                    </div>
+
+                   <!-- <div *ngIf="!loadingClients">
+
+
+                            <div class = "col-lg-8 ">
+
+                                <div class = 'row'>
+                                    <div class = "col-lg-6 text-right">
+                                    <i style="font-size:28px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                    <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <div class = "col-lg-6">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                    </div>-->
+
+                </div>
+
+
+             <div *ngIf="clientLocationsOpen">
+                <br>
+                <br>
+                <br>
+                <br>
+                <div *ngIf="loadingClients" class = "col-lg-12 text-center">
+                    <br>
+                    <br>
+                    <br>
+                    <i style="font-size:35px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                    <br>
+                    <br>
+                    <br>
+
+                </div>
+                <div *ngIf="!loadingClients" >
+
+
+                            <div  href="#" onclick="return false;">
+                                <div class = "col-lg-12">
+                                    <div class='row'>
+                                        <div class = "col-lg-3 text-right">
+                                            <div class ="row">
+                                                <div class ="col-lg-6 text-right">
+                                                </div>
+                                                <div class ="col-lg-6 text-left">
+                                                    <div class = "row">
+                                                        <div class = "col-lg-6">
+                                                        <button  style="position:inline; " class = "btn btn-primary bounce" value="Submit">CREATE</button>
+                                                        </div>
+                                                        <div class = "col-lg-6">
+                                                        <button  style="position:inline; " class = "btn btn-danger bounce disabled" value="Submit">DELETE</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "col-lg-3 text-left">
+                                                
+                                        </div>
+                                        <div class = "col-lg-3">
+                                        </div>
+                                        <div class = "col-lg-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "col-lg-12">
+                                    <div class='row'>
+                                        <div class = "col-lg-3 text-right">
+                                            <div class ="row">
+                                                <div class ="col-lg-6 text-right">
+                                                </div>
+                                                <div class ="col-lg-6">
+                                                    <h1  style="font-size:25px; font-family:'junar'; ">
+                                                        LOCATION
+                                                       
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "col-lg-3">
+                                            <div class ="row">
+                                                <div class ="col-lg-6 text-left">
+                                                    <i class="material-icons" style="font-size:40px; ">
+                                                        expand_more
+                                                    </i>                                                </div>
+                                                <div class ="col-lg-6 text-left">
+                                                    <h1  style="font-size:25px; font-family:'junar'; ">
+                                                        ADDRESS
+                                                       
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "col-lg-3 text-right">
+                                            <div class ="row">
+                                                <div class ="col-lg-6 text-left">
+                                                    <i class="material-icons" style="font-size:40px; ">
+                                                        expand_more
+                                                    </i>   
+                                                </div>
+                                                <div class ="col-lg-6">
+                                                    <h1  style="font-size:25px; font-family:'junar'; ">
+                                                        CONTRACTOR
+                                                       
+                                                    </h1>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "col-lg-3">
+                                            <div class ="row">
+                                                <div class ="col-lg-6 text-left">
+                                                    <i class="material-icons" style="font-size:40px; ">
+                                                        expand_more
+                                                    </i>                                                </div>
+                                                <div class ="col-lg-6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngFor="let client of clientArray"class ="col-lg-12"  [ngClass]="{'clientselected':clientSelected,'clientdeselected':!clientSelected}">
+
+                                    <div class = "row">
+
+                                        <div (click)="getClientLocation(client.location)" class = "col-lg-3 text-right">
+                                            <div class = 'row'>
+
+
+
+                                                            <h1 class="varta" style="font-size:25px; color:black; opacity:1;">
+                                                                {{client.location}}
+
+                                                            </h1>
+
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class = "col-lg-3 text-right">
+
+                                            <h1 class="varta"  style="font-size:25px; color:black; ">
+                                                {{client.locationaddress}}
+                                            </h1>
+
+                                        </div>
+
+                                        <div class = "col-lg-3 text-right">
+
+                                            <h1  class="varta" style="font-size:25px; color:black;">
+                                                {{client.contractor.clientname}}
+                                            </h1>
+
+                                        </div>
+
+                                        <div class = "col-lg-3">
+
+                                            <div class = "row">
+
+                                                <div class = "col-lg-8 text-right" >
+
+                                                    <div class ="row">
+
+                                                        <div class = "col-lg-6 text-right">
+
+                                                            <i class = "material-icons" style="padding-top:30px;">edit</i>
+
+                                                        </div>
+                                                        <div class = "col-lg-6 text-center">
+
+                                                            <i class = "material-icons deletecolor" style="padding-top:30px;">delete_forever</i>
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class = "col-lg-4 text-center">
+
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class = "col-lg-2">
+
+                </div>
+                <div class = "col-lg-7" >
+
+                    <div class = "row">
+
+                        <div class = "col-lg-4 text-center">
+
+                            <br>
+                           <a href="#" style="color:black;">
+                               <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_left</i>
+                           </a>
+
+                        </div>
+
+                        <div class = "col-lg-4 text-center">
+
+                            <div class = "row">
+
+                                <div class = "col-lg-4 text-center">
+                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
+                                        2
+                                    </p>
+
+                                </div>
+                                <div class = "col-lg-4 text-center">
+                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
+                                        OF
+                                    </p>
+                                </div>
+                                <div class = "col-lg-4 text-center">
+
+                                    <p style="font-size:14px; font-family:'junar'; color:black; padding-top:38px;">
+                                        2
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class = "col-lg-4 text-center">
+                            <br>
+                            <a href="#" style='color:black;'>
+                                <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_right</i>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class = "col-lg-3">
+                    <div class="row">
+                        <div class = "col-lg-6 text-left">
+                            <br>
+                    <button class = "btn btn-primary " value="Submit">CREATE NEW</button>
+                        </div>
+                        <div class = "col-lg-6">
+                                </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+        <!--<div class = "col-lg-2 text-right">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <i class="material-icons" style="font-size:40px;">expand_less</i>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <i class="material-icons" style="font-size:40px;">expand_more</i>
+
+
+        </div>-->
+
+
+
+</div>

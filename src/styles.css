@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+	font-family: 'junar';
+    src: url('./assets/JUNAR.ttf');
+
+}
+@font-face {
+	font-family: 'varta';
+    src: url('./assets/Varta.ttf');
+
+}
+.osc{
+    font-family: 'Open Sans Condensed', sans-serif;
+
+
+    }
+    .varta{
+        font-family:'varta';
+    }
+    .montserrat{
+
+        font-family: 'Montserrat'
+    }
