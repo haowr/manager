@@ -255,10 +255,10 @@
                                                 <div class ="col-lg-6 text-left">
                                                     <div class = "row">
                                                         <div class = "col-lg-6">
-                                                        <button  style="position:inline; " class = "btn btn-primary bounce" value="Submit">CREATE</button>
+                                                        <button (click)="openCreateNewLocationPage()" style="position:inline; " class = "btn btn-primary bounce" value="Submit">CREATE</button>
                                                         </div>
                                                         <div class = "col-lg-6">
-                                                        <button  style="position:inline; " class = "btn btn-danger bounce disabled" value="Submit">DELETE</button>
+                                                        <button (click)="openLocationList()" style="position:inline; " class = "btn btn-danger bounce disabled" value="Submit">DELETE</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,6 +273,150 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div *ngIf="createNewLocation">
+
+                                    <div class = "col-lg-12">
+                                        <div class='row'>
+                                            <div class = "col-lg-3 text-right">
+                                                <div class ="row">
+                                                    <div class ="col-lg-6 text-right">
+                                                    </div>
+                                                    <div class ="col-lg-6">
+                                                        <h1  style="font-size:25px; font-family:'junar'; ">
+                                                            LOCATION
+                                                           
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "col-lg-3">
+                                                <div class ="row">
+                                                    <div class ="col-lg-6 text-left">
+                                                        <i class="material-icons" style="font-size:40px; ">
+                                                            expand_more
+                                                        </i>                                                </div>
+                                                    <div class ="col-lg-6 text-left">
+                                                        <h1  style="font-size:25px; font-family:'junar'; ">
+                                                            ADDRESS
+                                                           
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "col-lg-3 text-right">
+                                                <div class ="row">
+                                                    <div class ="col-lg-6 text-left">
+                                                        <i class="material-icons" style="font-size:40px; ">
+                                                            expand_more
+                                                        </i>   
+                                                    </div>
+                                                    <div class ="col-lg-6">
+                                                        <h1  style="font-size:25px; font-family:'junar'; ">
+                                                            CONTRACTOR
+                                                           
+                                                        </h1>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "col-lg-3">
+                                                <div class ="row">
+                                                    <div class ="col-lg-6 text-left">
+                                                        <i class="material-icons" style="font-size:40px; ">
+                                                            expand_more
+                                                        </i>                                                </div>
+                                                    <div class ="col-lg-6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "col-lg-12">
+                                        <div class='row'>
+                                            <div class = "col-lg-6 ">
+                                                <div class ="row">
+                                                    <div class = "col-lg-3"></div>
+                                                    <div class = "col-lg-8">
+                                                        <br>
+                                                        <form>
+                                                            <div class="form-group">
+                                                              <label class="varta" style="font-size:27px; "for="exampleInputEmail1">LOCATION #</label>
+                                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                              <label  class="varta" style="font-size:27px; "for="exampleInputPassword1">Password</label>
+                                                              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                            </div>
+                                                      
+                                                            <div class="form-group">
+                                                                <label class="varta" style="font-size:27px; " for="exampleInputEmail1">Email address</label>
+                                                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                                              </div>
+                                                              <div class="form-group">
+                                                                <label class="varta" style="font-size:27px; " for="exampleInputPassword1">Password</label>
+                                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                              </div>
+                                                           
+                                                              <div class = 'row'>
+                                                                  <div class = "col-lg-6">
+                                                                      <div class="row">
+                                                                          <div class = "col-lg-6">
+                                                                            <button (click)="openLocationList()"type="submit" class="btn btn-primary">CANCEL</button>
+
+                                                                          </div>
+                                                                          <div class = "col-lg-6">
+                                                                            <button (click)="openLocationList()"type="submit" class="btn btn-primary">SUBMIT</button>
+
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class = "col-lg-6 text-lect">
+
+                                                                  </div>
+                                                              </div>
+                                                          </form>
+                                                    </div>
+                                                    <div class ="col-lg-1">
+                                                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class = "col-lg-3">
+                                               
+                                            </div>
+                                            <div class = "col-lg-3 text-right">
+                                            
+                                            </div>
+                                            <div class = "col-lg-3 text-right">
+                                                <i class="material-icons" style="font-size:20px;">
+                                                    clear
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class ="col-lg-12"  [ngClass]="{'clientselected':clientSelected,'clientdeselected':!clientSelected}">
+    
+                                        <div class = "row">
+    
+                                            <div class = "col-lg-8 text-right">
+                                              
+    
+                                            </div>
+    
+                                            <div class = "col-lg-4 text-right">
+    
+                                               
+    
+                                            </div>
+    
+
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+                                <div *ngIf="locationListOpen">
+
                                 <div class = "col-lg-12">
                                     <div class='row'>
                                         <div class = "col-lg-3 text-right">
@@ -328,6 +472,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div *ngFor="let client of clientArray"class ="col-lg-12"  [ngClass]="{'clientselected':clientSelected,'clientdeselected':!clientSelected}">
 
                                     <div class = "row">
@@ -402,6 +547,72 @@
 
                                 </div>
 
+                               
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <div class = "col-lg-2">
+                
+                                </div>
+                                <div class = "col-lg-7" >
+                
+                                    <div class = "row">
+                
+                                        <div class = "col-lg-4 text-center">
+                
+                                            <br>
+                                           <a href="#" style="color:black;">
+                                               <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_left</i>
+                                           </a>
+                
+                                        </div>
+                
+                                        <div class = "col-lg-4 text-center">
+                
+                                            <div class = "row">
+                
+                                                <div class = "col-lg-4 text-center">
+                                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
+                                                        2
+                                                    </p>
+                
+                                                </div>
+                                                <div class = "col-lg-4 text-center">
+                                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
+                                                        OF
+                                                    </p>
+                                                </div>
+                                                <div class = "col-lg-4 text-center">
+                
+                                                    <p style="font-size:14px; font-family:'junar'; color:black; padding-top:38px;">
+                                                        2
+                                                    </p>
+                
+                                                </div>
+                
+                                            </div>
+                
+                                        </div>
+                
+                                        <div class = "col-lg-4 text-center">
+                                            <br>
+                                            <a href="#" style='color:black;'>
+                                                <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_right</i>
+                                            </a>
+                                        </div>
+                
+                                    </div>
+                
+
                             </div>
 
 
@@ -411,83 +622,10 @@
 
 
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div class = "col-lg-2">
+               
 
                 </div>
-                <div class = "col-lg-7" >
-
-                    <div class = "row">
-
-                        <div class = "col-lg-4 text-center">
-
-                            <br>
-                           <a href="#" style="color:black;">
-                               <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_left</i>
-                           </a>
-
-                        </div>
-
-                        <div class = "col-lg-4 text-center">
-
-                            <div class = "row">
-
-                                <div class = "col-lg-4 text-center">
-                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
-                                        2
-                                    </p>
-
-                                </div>
-                                <div class = "col-lg-4 text-center">
-                                    <p style="font-size:14px; font-family:'junar'; padding-top:38px; color:black;">
-                                        OF
-                                    </p>
-                                </div>
-                                <div class = "col-lg-4 text-center">
-
-                                    <p style="font-size:14px; font-family:'junar'; color:black; padding-top:38px;">
-                                        2
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class = "col-lg-4 text-center">
-                            <br>
-                            <a href="#" style='color:black;'>
-                                <i class="material-icons text-center" style="font-size:60px; color:black;opacity:0.8;">chevron_right</i>
-                            </a>
-                        </div>
-
-                    </div>
-
-
-                </div>
-                <div class = "col-lg-3">
-                    <div class="row">
-                        <div class = "col-lg-6 text-left">
-                            <br>
-                    <button class = "btn btn-primary " value="Submit">CREATE NEW</button>
-                        </div>
-                        <div class = "col-lg-6">
-                                </div>
-                    </div>
-
-                </div>
+      
 
             </div>
 

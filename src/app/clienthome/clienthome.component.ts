@@ -16,6 +16,8 @@ export class ClienthomeComponent implements OnInit {
   clientArray:object = [
 
   ]
+  createNewLocation:boolean = false;
+  locationListOpen:boolean = true;
   loadingClients:boolean = true;
   clientSelected:boolean = false;
   currentClient:String = this.route.params['_value'].clientname
@@ -42,6 +44,38 @@ export class ClienthomeComponent implements OnInit {
 
   }
 
+  openLocationList(){
+
+    if(!this.locationListOpen){
+
+        this.locationListOpen = true;
+        this.createNewLocation = false;
+
+    }else{
+
+      
+      
+
+    }
+
+  }
+
+  openCreateNewLocationPage(){
+
+    if(!this.createNewLocation){
+
+      this.createNewLocation = true;
+      this.locationListOpen = false;
+
+    }else{
+
+      
+      
+
+    }
+
+
+  }
   selectClient(client){
 
     console.log(client)
