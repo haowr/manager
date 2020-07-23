@@ -3,14 +3,14 @@
     color:red;
     opacity:.6;
 
-}.contractorselected{
+}.clientselected{
 
-    background-color:rgb(224, 224, 224);
+    background-color:rgb(172, 172, 172);
     color:grey;
 
 
 }
-.contractordeselected{
+.clientdeselected{
 
     background-color: white;
     color:white;
@@ -23,3 +23,18 @@
     opacity:.6;
 
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(177, 84, 84);
+    font-family:'varta';
+    font-size:24px;
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(177, 84, 84);
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(177, 84, 84);
+  }

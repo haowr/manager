@@ -14,6 +14,8 @@ export class ApiService {
   addContractor(data:any):Observable<any>{
     return this.http.post<any>('http://localhost:3000/clients/create',data)
   }
+  
+  
   addLocation(data:any):Observable<any>{
 
       return this.http.post<any>('http://localhost:3000/locations/create',data)

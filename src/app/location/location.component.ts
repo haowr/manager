@@ -16,17 +16,13 @@ export class LocationComponent implements OnInit {
   currentLocationAddress: String = "";
   currentLocationPhone: String = "";
   currentLocationEmail:String = "";
-  currentAddress:String = "";
-  currentClient:String = "";
   currentPhone:String ="";
   currentEmail:String = "";
   loadingLocation: boolean = false;
-  loadingClients:boolean = false;
-  registrationFailMsg:String = "";
+  registrationFailMsg:String = ""
 
 
-
-  getClientLocation(){
+    getClientLocation(){
 
 
     this.api.getLocation(this.route.params['_value'].locationname).subscribe((data)=>{
@@ -46,6 +42,8 @@ export class LocationComponent implements OnInit {
 
 
     })
+
+
     //(['/clients/locations/'+this.route.params['_value'].clientname])
 
 

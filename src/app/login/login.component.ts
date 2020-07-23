@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   successfulLogin: boolean = false;
   unSuccessfulLogin: boolean = false;
   userNameCannotBeEmpty: boolean = false;
+  registrationFailMsg:string = ""
   passwordCannotBeEmpty: boolean = false;
   loadingLogin: boolean = false;
   userNameCannotBeEmptyMsg: string = "Username Cannot Be Empty..."

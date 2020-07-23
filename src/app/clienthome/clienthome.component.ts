@@ -19,6 +19,7 @@ export class ClienthomeComponent implements OnInit {
   createNewLocation:boolean = false;
   locationListOpen:boolean = true;
   loadingClients:boolean = true;
+  loadingLocation:boolean = false;
   clientSelected:boolean = false;
   currentClient:String = this.route.params['_value'].clientname
   currentAddress:String = "";
@@ -26,11 +27,27 @@ export class ClienthomeComponent implements OnInit {
   currentEmail:String = "";
   clientHomeHomeOpen:boolean = true;
   clientLocationsOpen:boolean = false;
+  locationName: string = "";
+  locationEmail: string = "";
+  locationPhoneNumber: string = "";
+  locationAddress: string =  "";
+  locationContactName: string = "";
+  locationContactEmail:string = "";
+  locationContactPhoneNumber:string = "";
+  locationContactAddress:string = "";
+  locationAddressCannotBeEmpty:boolean = false;
+  locationNameCannotBeEmpty:boolean = false;
+  locationEmailCannotBeEmpty:boolean = false;
+  locationPhoneNumberCannotBeEmpty:boolean = false;
+  locationContactNameCannotBeEmpty:boolean = false;
+  locationContactEmailCannotBeEmpty:boolean = false;
+  locationContactPhoneNumberCannotBeEmpty:boolean = false;
+  locationContactAddressCannotBeEmpty:boolean = false;
+  fieldCannotBeEmptyMsg:string = "Field Cannot Be Empty....";
 
   getClient(){
 
-
-    this.api.getClient(this.route.params['_value'].clientname).subscribe((data)=>{
+      this.api.getClient(this.route.params['_value'].clientname).subscribe((data)=>{
 
       console.log(data)
       this.currentClient = data.client.clientname;
@@ -40,7 +57,169 @@ export class ClienthomeComponent implements OnInit {
 
 
 
-    })
+      })
+
+  }
+
+  submitLocation(){
+
+    if(this.locationName == ""){
+
+      this.locationNameCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationNameCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+    if(this.locationAddress == ""){
+
+      this.locationAddressCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationAddressCannotBeEmpty = false;
+
+      },4000)
+
+    }
+    if(this.locationEmail == ""){
+
+      this.locationEmailCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationEmailCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+    if(this.locationPhoneNumber == ""){
+
+      this.locationPhoneNumberCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationPhoneNumberCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+    if(this.locationContactName == ""){
+
+      this.locationContactNameCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationContactNameCannotBeEmpty = false;
+
+      },4000)
+
+    }
+    if(this.locationContactAddress == ""){
+
+      this.locationContactAddressCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationContactAddressCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+    if(this.locationContactEmail == ""){
+
+      this.locationContactEmailCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationContactEmailCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+    if(this.locationContactPhoneNumber == ""){
+
+      this.locationContactPhoneNumberCannotBeEmpty = true;
+
+      setTimeout(()=>{
+
+        this.locationContactPhoneNumberCannotBeEmpty = false;
+
+      },4000)
+
+
+    }
+
+
+    if(this.locationName !== "" &&
+       this.locationPhoneNumber !== "" &&
+       this.locationEmail !== "" &&
+       this.locationAddress !== "" &&
+       this.locationContactName !== "" &&
+       this.locationContactPhoneNumber !== "" &&
+       this.locationContactEmail !== "" &&
+       this.locationContactAddress !== ""){
+
+        this.loadingLocation = true;
+
+        let location = {
+
+          location: this.locationName,
+          locationPhoneNumber: this.locationPhoneNumber,
+          locationEmail: this.locationEmail,
+          locationAddress: this.locationAddress,
+          locationContactName: this.locationContactName,
+          locationContactPhoneNumber: this.locationContactPhoneNumber,
+          locationContactEmail: this.locationContactEmail,
+          client: {
+
+              clientname:   this.currentClient,
+              clientemail:  this.currentEmail,
+              clientaddress:  this.currentAddress,
+              clientphone: this.currentPhone 
+          }
+
+        }
+
+        console.log("this.locationName",this.locationName)
+        console.log("this.locationPhoneNumber",this.locationPhoneNumber)
+        console.log("this.locationEmail",this.locationEmail)
+        console.log("this.locationAddress",this.locationAddress)
+        console.log("this.locationContactName",this.locationContactName)
+        console.log("this.locationContactPhoneNumber",this.locationPhoneNumber)
+        console.log("this.locationContactEmail",this.locationContactEmail)
+        console.log("this.locationContactAddress",this.locationContactAddress)
+        console.log("location", location)
+
+        this.api.addLocation(location).subscribe((data)=>{
+
+            setTimeout(()=>{
+
+              this.locationName = "";
+              this.locationPhoneNumber = "";
+              this.locationEmail = "";
+              this.locationAddress = "";
+              this.locationContactName = "";
+              this.locationContactPhoneNumber = "";
+              this.locationContactEmail = "";
+              this.locationContactAddress = "";
+              this.loadingLocation = false;
+
+            },3000)
+            
+        })
+
+       }
+
+
 
   }
 
@@ -48,13 +227,41 @@ export class ClienthomeComponent implements OnInit {
 
     if(!this.locationListOpen){
 
-        this.locationListOpen = true;
-        this.createNewLocation = false;
+      this.loadingClients = true;
+      this.locationListOpen = true;
+      this.clientHomeHomeOpen = false;
+      this.createNewLocation = false;
+        
+      this.api.getLocations().subscribe((data)=>{
+
+          console.log(data)
+          this.clientArray = data.locations;
+
+          setTimeout(()=>{
+            
+            this.loadingClients = false;
+
+          },3000)
+    
+    
+        })
 
     }else{
 
+    }
+
+  }
+  goBackToLocationList(){
+
+
+    if(this.createNewLocation){
+
+      this.createNewLocation = false;
+      this.locationListOpen = true;
+
+    }else{
       
-      
+      //this.locationListOpen = false;
 
     }
 
@@ -69,13 +276,14 @@ export class ClienthomeComponent implements OnInit {
 
     }else{
 
-      
-      
+
+
 
     }
 
 
   }
+
   selectClient(client){
 
     console.log(client)
@@ -92,6 +300,7 @@ export class ClienthomeComponent implements OnInit {
     //this.router.navigate(['/clients/'+client.clientname])
 
   }
+
   startLoading(){
 
     setTimeout(()=>{
@@ -101,6 +310,7 @@ export class ClienthomeComponent implements OnInit {
      },4000)
 
   }
+
   openClientHomeHome(){
 
       if(!this.clientHomeHomeOpen){
@@ -117,19 +327,12 @@ export class ClienthomeComponent implements OnInit {
   }
   openClientLocations(){
 
-    this.api.getLocations().subscribe((data)=>{
-
-      console.log(data)
-      this.clientArray = data.locations;
-
-
-    })
-
-
+ 
     if(!this.clientLocationsOpen){
 
         this.clientLocationsOpen = true;
         this.clientHomeHomeOpen = false;
+        this.openLocationList()
 
     }else{
 
