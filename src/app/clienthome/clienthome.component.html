@@ -109,9 +109,9 @@
                 <div *ngIf="clientHomeHomeOpen" >
 
                     <div class = "col-lg-2  text-right">
-                        <i style="font-size:35px;" style="position:fixed; top:5rem;"class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
 
                         <img class="img-responsive" style="padding-top:1rem;" src="../assets/building.svg"/>
+                        
                         <div class = "row">
 
                             <div *ngIf="!loadingClients" class = "col-lg-12 text-left">
@@ -124,7 +124,9 @@
                                      
                                     <div class = "col-lg-6 ">
 
-                                      
+                                        <i style="font-size:35px;" class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                        <span class="sr-only">Loading...</span>
+
                                     </div>
 
                                     <div class = "col-lg-3">

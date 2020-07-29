@@ -39,7 +39,7 @@ export class ClienthomeComponent implements OnInit {
   clientArray:Array<any> = [
 
   ]
-  contractorArray:Array<any> =[
+  contractorArray:Array<any> =[ 
 
     { 
       contractorname:"Select A Contractor..." 
