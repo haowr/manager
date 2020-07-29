@@ -16,6 +16,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContractorComponent } from './contractor/contractor.component';
 import { ClienthomeComponent } from './clienthome/clienthome.component';
 import { LocationComponent } from './location/location.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +50,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ChartsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

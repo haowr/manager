@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
   selector: 'app-clienthome',
   templateUrl: './clienthome.component.html',
@@ -12,21 +15,53 @@ export class ClienthomeComponent implements OnInit {
                private route: ActivatedRoute,
                private api: ApiService) { }
 
-
+               lineChartData: ChartDataSets[] = [
+                { data: [85, 72, 78, 75, 77, 75], label: 'Crude oil prices' },
+              ];
+            
+              lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
+            
+              lineChartOptions = {
+                responsive: true,
+              };
+            
+              lineChartColors: Color[] = [
+                {
+                  borderColor: 'black',
+                  backgroundColor: 'rgba(255,255,0,0.28)',
+                },
+              ];
+            
+              lineChartLegend = true;
+              lineChartPlugins = [];
+              lineChartType = 'line';
+              
   clientArray:object = [
 
   ]
+  contractorArray:Array<any> =[
+
+    {
+      contractorname:"Select A Contractor..."
+    }
+
+  ]
   createNewLocation:boolean = false;
-  locationListOpen:boolean = true;
+  locationListOpen:boolean = false;
+  contractorListOpen:boolean = false;
+  selectedContractor: string = "";
   loadingClients:boolean = true;
   loadingLocation:boolean = false;
+  loadingContractor:boolean = false; 
   clientSelected:boolean = false;
+  currentLocation:object = {};
   currentClient:String = this.route.params['_value'].clientname
   currentAddress:String = "";
   currentPhone:String = "";
   currentEmail:String = "";
   clientHomeHomeOpen:boolean = true;
   clientLocationsOpen:boolean = false;
+  deleteButtonActivated:boolean = false;
   locationName: string = "";
   locationEmail: string = "";
   locationPhoneNumber: string = "";
@@ -43,8 +78,243 @@ export class ClienthomeComponent implements OnInit {
   locationContactEmailCannotBeEmpty:boolean = false;
   locationContactPhoneNumberCannotBeEmpty:boolean = false;
   locationContactAddressCannotBeEmpty:boolean = false;
+  clientExpenditurePageOpen:boolean = false;
+  contractorForLocation:object = {
+                                    contractor:""
+
+                                  };
+                    
   fieldCannotBeEmptyMsg:string = "Field Cannot Be Empty....";
 
+  openExpendituresPage(){
+
+    if(!this.clientExpenditurePageOpen){
+
+      this.clientExpenditurePageOpen = true;
+      this.clientHomeHomeOpen = false;
+      this.clientLocationsOpen = false;
+
+    }{
+
+    }
+
+  }
+  openLocationList(){
+
+    this.contractorArray  =[
+  
+      {
+        contractorname:"Select A Contractor..."
+      }
+  
+    ]
+    if(!this.locationListOpen){
+
+      this.loadingClients = true;
+      this.clientLocationsOpen = true;
+      this.locationListOpen = true;
+      this.clientHomeHomeOpen = false;
+      this.contractorListOpen = false;
+      this.createNewLocation = false;
+      this.clientExpenditurePageOpen = false;
+        
+      this.api.getLocations().subscribe((data)=>{
+
+          console.log(data)
+
+          this.clientArray = data.locations;
+          let contractorlist = [{}]
+
+          this.api.getContractors().subscribe((data)=>{
+
+            for(let i = 0; i <= this.clientArray.length; i++){
+      
+
+              //for(let i =0; i <= data.contractors.length; i ++){
+                   //this.clientArray[i].contractorlist[0]={}
+              
+                  // this.clientArray[i].contractorlist = data.contractors
+
+             // }
+
+
+            }
+            for(let z=0; z< data.contractors.length; z++){
+              console.log(this.contractorArray)
+              console.log("data.contractors",data.contractors[z])
+              this.contractorArray.push(data.contractors[z])
+   
+            }
+            console.log(this.contractorArray)
+
+          })
+
+
+          setTimeout(()=>{
+            
+            this.loadingClients = false;
+
+          },3000)
+    
+    
+        })
+
+    }else{
+
+    }
+
+  }
+  openContractorList(){
+
+    if(!this.contractorListOpen){
+
+      this.contractorListOpen = true;
+      this.locationListOpen = false;
+      this.clientHomeHomeOpen = false;
+      this.clientExpenditurePageOpen = false;
+
+    }else{
+
+
+    }
+
+  }
+  goBackToLocationList(){
+
+
+    if(this.createNewLocation){
+
+      this.createNewLocation = false;
+      this.locationListOpen = true;
+
+    }else{
+      
+      //this.locationListOpen = false;
+
+    }
+
+  }
+  openCreateNewLocationPage(){
+
+    if(!this.createNewLocation){
+
+      this.createNewLocation = true;
+      this.locationListOpen = false;
+
+    }else{
+
+
+
+
+    }
+
+
+  }
+  addContractorToLocation(locationname,contractorname){
+
+    console.log("selectedContractor",this.selectedContractor)    
+    let contractor = this.selectedContractor
+    let updatedLocation = {}
+    let retrievedContractor = {}
+    this.loadingContractor = true;
+    this.api.getContractor(contractor).subscribe((data)=>{
+
+      console.log("GETCONTRACTOR")
+      console.log("data.contractor",data.contractor)
+      retrievedContractor = data.contractor;
+
+      this.api.getLocation(locationname).subscribe((data)=>{
+
+          console.log("data.locations", data.locations)
+          console.log("retrievedContractor", retrievedContractor)
+          data.locations.contractor = retrievedContractor
+          retrievedContractor.locationname = data.locations.location;
+          
+
+          this.api.updateLocationContractor(retrievedContractor).subscribe((data)=>{
+
+            console.log("data.location", data)
+            this.loadingClients = true;
+
+            this.api.getLocations().subscribe((data)=>{
+
+              console.log(data)
+              this.clientArray = data.locations
+
+              this.api.getContractors().subscribe((data)=>{
+
+                for(let i = 0; i <= this.clientArray.length; i++){
+          
+    
+                  for(let i =0; i <= data.contractors.length; i ++){
+    
+                       this.clientArray[i].contractorlist = data.contractors
+    
+                  }
+    
+    
+                }
+    
+              })
+ 
+             
+    
+              setTimeout(()=>{
+                
+                this.loadingClients = false;
+                this.loadingContractor = false;
+    
+              },3000)
+        
+        
+            })
+          })
+  
+      })
+      this.getClient()
+
+  })
+  }
+  getContractors(){
+
+      this.api.getContractors().subscribe((data)=>{
+
+        console.log(data)
+        //this.contractorArray = data.contractors;
+        for(let i=0; i<= data.contractors.length; i++){
+
+           this.contractorArray[i+1].push(data.contractors[i])
+
+        }
+
+      })
+  }
+  deleteContractor(){
+
+
+
+  }
+  createContractor(){
+
+    let contractor = {
+
+      contractorname: "Dogast",
+      contractorphone: "999-999-9999",
+      contractoremail: "rg@gmail.com",
+      contractoraddress: "53 Billmain St.",
+      contactname: "WILL ANDERSON",
+      contactphone:"888-988-9999",
+     
+      expenditures:"$100.00"
+
+    }
+    this.api.createContractor(contractor).subscribe((data)=>{
+
+      console.log(data)
+
+    })
+
+  }
   getClient(){
 
       this.api.getClient(this.route.params['_value'].clientname).subscribe((data)=>{
@@ -60,7 +330,6 @@ export class ClienthomeComponent implements OnInit {
       })
 
   }
-
   submitLocation(){
 
     if(this.locationName == ""){
@@ -222,85 +491,45 @@ export class ClienthomeComponent implements OnInit {
 
 
   }
+  optionFunction(){
 
-  openLocationList(){
-
-    if(!this.locationListOpen){
-
-      this.loadingClients = true;
-      this.locationListOpen = true;
-      this.clientHomeHomeOpen = false;
-      this.createNewLocation = false;
-        
-      this.api.getLocations().subscribe((data)=>{
-
-          console.log(data)
-          this.clientArray = data.locations;
-
-          setTimeout(()=>{
-            
-            this.loadingClients = false;
-
-          },3000)
-    
-    
-        })
-
-    }else{
-
-    }
+    console.log(this.contractorArray)
 
   }
-  goBackToLocationList(){
+  deleteLocation(){
 
+    this.loadingClients = true;
 
-    if(this.createNewLocation){
+    this.api.deleteLocation(this.currentLocation).subscribe((data)=>{
 
-      this.createNewLocation = false;
-      this.locationListOpen = true;
-
-    }else{
+      console.log(data)
       
-      //this.locationListOpen = false;
+      this.clientArray = data.locations;
+      setTimeout(()=>{
 
-    }
+        this.loadingClients = false;
+
+      },2000)
+      this.loadingClients = false;
+
+
+    })
 
   }
+  selectLocation(location,index){
 
-  openCreateNewLocationPage(){
-
-    if(!this.createNewLocation){
-
-      this.createNewLocation = true;
-      this.locationListOpen = false;
-
+    console.log(location)
+    this.currentLocation = location;
+    
+    if(!location[index]){
+      location[index] = true;
+      this.deleteButtonActivated = true;
     }else{
-
-
-
-
+      location[index] = false;
+      this.deleteButtonActivated = false;
     }
 
-
   }
-
-  selectClient(client){
-
-    console.log(client)
-    //console.log("clientname",client.companyname)
-    if(!this.clientSelected){
-
-      this.clientSelected = true;
-
-    }else{
-
-      this.clientSelected = false;
-
-    }
-    //this.router.navigate(['/clients/'+client.clientname])
-
-  }
-
   startLoading(){
 
     setTimeout(()=>{
@@ -310,13 +539,14 @@ export class ClienthomeComponent implements OnInit {
      },4000)
 
   }
-
   openClientHomeHome(){
 
       if(!this.clientHomeHomeOpen){
 
         this.clientHomeHomeOpen = true;
+        this.locationListOpen = false;
         this.clientLocationsOpen = false;
+        this.clientExpenditurePageOpen = false;
 
       }else{
 
@@ -392,18 +622,45 @@ export class ClienthomeComponent implements OnInit {
 
 
   }
-
   getRouteParams(){
 
     //console.log(this.router.params)
 
   }
+  createClient(){
 
+    let Client = {
+
+      clientname:     "Superstore",
+      clientaddress:  "888 Richards Rd.",
+      clientemail:    "rrsuperstore@superstore.ca",
+      clientphone:    "888-888-8888",
+      contactname:    "Fracis Wright",
+      contactemail:   "fwright@gmail.com",
+      contactphone:   "999-999-9999"
+
+    }
+
+    this.api.createClient(Client).subscribe((data)=>{
+
+      console.log(data.client)
+      //this.currentAddress = data.client.clientaddress;
+      //this.currentClient = data.client.clientname;
+      //this.currentEmail = data.client.clientemail;
+      //this.currentPhone = data.client.clientphone;
+
+    })
+
+  }
   ngOnInit(): void {
 
       this.startLoading()
+      //this.createClient()
       this.getClient()
-      this.newLocation()
+     // this.getContractors()
+      //this.createClient()
+      //this.newLocation()
+      //this.createContractor()
       console.log("PARAMMAP")
       console.log(this.route.params['_value'].clientname)
   }
