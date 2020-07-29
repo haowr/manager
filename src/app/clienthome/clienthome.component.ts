@@ -36,16 +36,17 @@ export class ClienthomeComponent implements OnInit {
               lineChartPlugins = [];
               lineChartType = 'line';
               
-  clientArray:object = [
+  clientArray:Array<any> = [
 
   ]
   contractorArray:Array<any> =[
 
-    {
-      contractorname:"Select A Contractor..."
+    { 
+      contractorname:"Select A Contractor..." 
     }
 
   ]
+
   createNewLocation:boolean = false;
   locationListOpen:boolean = false;
   contractorListOpen:boolean = false;
